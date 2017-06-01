@@ -40,13 +40,20 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.toggleImage = function () {
         this.showImage = !this.showImage;
     };
+    ProductListComponent.prototype.ngOnInit = function () {
+        console.log('In OnInit');
+    };
     return ProductListComponent;
 }());
 ProductListComponent = __decorate([
     core_1.Component({
         selector: 'pm-products',
+        //Can be used in place of relative path
+        moduleId: module.id,
         //path is relatvie to index.html file
-        templateUrl: 'app/products/product-list.component.html'
+        //templateUrl: 'app/products/product-list.component.html',
+        templateUrl: 'product-list.component.html',
+        styleUrls: ['product-list.component.css']
     })
 ], ProductListComponent);
 exports.ProductListComponent = ProductListComponent;
