@@ -20,7 +20,7 @@ AppComponent = __decorate([
         //Directive name used int HTML
         selector: 'pm-app',
         //View Layout
-        template: '<h1>Angular2: Getting Started</h1>'
+        template: "\n    <div>\n        <pm-products></pm-products>\n    </div>"
     })
     //Class
 ], AppComponent);

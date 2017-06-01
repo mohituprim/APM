@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
     //Directive name used int HTML
     selector: 'pm-app',
     //View Layout
-    template: '<h1>Angular2: Getting Started</h1>'
+    template:`
+    <div>
+        <pm-products></pm-products>
+    </div>`
 })
 //Class
 export class AppComponent { }
