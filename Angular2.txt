@@ -1,0 +1,439 @@
+Angular is A JavaScript framework For building client-side applications Using HTML, CSS and JavaScript
+Why Angular?
+	Expressive HTML
+	Powerful data binding 
+	Modular by design
+	Built IN Backend integration
+Why Angular 2?
+	Built for speed
+	Modern
+	Simplified API
+	Enhances productuvity
+Anatomy of an Angular 2 Application
+	Application=Component+Component.....and Services
+	Component=Template+Class(Proerties+Methods)+Metadata
+	Angular Modules
+	Atleast one Root Angular Modules (Consist of components) 
+	Also could have several Feature Angular Modules
+Sample Application Architecture
+																	|-------------->Welcome Component
+																	|				|---------->>>>
+	index.html------->>>>App Component----------->>>>>>Product List Component--------				Star Component
+																	|				|--------->>>>>
+																	|
+						Product Data Service								Product Detail Component
+Setting up an Angular 2 Application
+	1. Create an application folder 
+	2. Add package definition and configuration files 
+	3. Install the packages 
+	4. Create the app's Angular Module 
+	5. Create the main.ts file 
+	6. Create the host Web page (index.html)
+	How?
+		Manually perform each step www.angular.io Quick Start 
+		Download the results of these steps https://github.com/angular/quickstart 
+		AngularCli https://github.com/angular/angular-cli 
+		Starter files https://github.com/DeborahK/Angular2GettingStarted 
+Modules
+	ES Modules
+		Code files that import or export something
+		Organize our code files 
+		Modularize our code 
+		Promote code reuse
+	Angular Modules
+		Code files that organize the application into cohesive blocks of functionality 
+		Organize our application 
+		Modularize our application 
+		Promote application boundaries
+What Is a Component?
+	Component =  Template + Class(Proerties+Methods) + Metadata
+	Template
+		View Layout
+		Created with HTML
+		includes binding and directives
+	Class
+		Code supporting the view
+		created with type scripts
+		properties:data
+		Methods:logic
+	Metadata
+		Extra data for angular
+		Defined with decorator
+Decorator
+	A function that adds metadata to a class, its members, or its method arguments. 
+	Prefixed with an @. 
+	Angular provides built-in decorators
+	Ex-@Component()
+Importing what we need
+	Before we use an external function or class, we define where to find it 
+	import statement 
+	import allows us to use exported members from external ES modules 
+	Import from a third-party library, our own ES modules, or from Angular
+Bootstrapping Our App Component
+	Load the root component (bootstrapping) 
+	Host the application
+	
+	Single Page Application (SPA)
+		index.html contains the main page for the application 
+		This is often the only Web page of the application 
+		Hence an Angular application is often called a Single Page Application (SPA)
+		
+	Angular Application Startup 
+		
+		//
+		index.html
+		{
+			//import of app component so that we can use the seector and find the root application component
+			System.import('app')...;
+			<body> 
+			//Selector from the root application component
+			<pm-app>Loading App ... </pm-app> 
+			</body>
+		}
+		
+		//Defines the main entry point for application that loaded using app module
+		System.config.js
+		{
+			packages: {
+				app: {
+				main: './main.js', 
+				defaultExtension: 'js' 
+				}, ... 
+		}		
+		
+		//First angular module refered by main of app provides the starting point
+		main.ts
+		{
+			//Module loader
+			import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+			//Module loader will find the AppModule from below location
+			import { AppModule }   from './app.module';
+			
+			//Launch application with dynamic browser and AppModule (First angular module)
+			platformBrowserDynamic(). bootstrapModule(AppModule);
+		}
+		
+		//Application or angular module 
+		app.module.ts
+		{
+			import { NgModule } from '@angular/core';
+			import { BrowserModule } from '@angular/platform-browser';
+			import { AppComponent }  from './app.component';
+			//this directive makes it module
+			@NgModule({ 
+				//External module to this module
+				imports: [ BrowserModule ], 
+				//components belong to module
+				declarations: [ AppComponent ], 
+				//Defines the root component of applicATION
+				bootstrap: [ AppComponent ] }) 
+				
+				export class AppModule { }
+		}
+		
+		//Finally loads the AppComponent
+		app.component.ts
+		{
+			@Component({ 
+			selector: 'pm-app', 
+			template: ` <div>{{pageTitle}}</div> ` 
+			}) 
+			
+			export class AppComponent { ... }
+		}
+						
+Bindings
+	Coordinates communication between the component's class and its template and often involves passing data. 
+	Interpolation
+		One way binding
+			From component class property to an element property
+			<h1>{{pageTitle}}</h1> using double curly braces
+	Property Binding
+	Event Binding
+	TwoWay Binding
+		ngModel
+Directive
+	Custom HTML element or attribute used to power up and extend our HTML. 
+	• Custom 
+	• Built-In
+		Structural(* signifies it)
+			*ngIf
+			*nfFor
+				for…of vs for…in
+					1-for--of-Iterates over iterable objects, such as an array. • Result: di, boo, punkeye
+						let nicknames= ['di', 'boo', 'punkeye'];
+						for (let nickname of nicknames) { console.log(nickname); }
+					2-for--in-Iterates over the properties of an object. • Result: 0, 1, 2
+						let nicknames= ['di', 'boo', 'punkeye'];
+						for (let nickname in nicknames) { console.log(nickname); }
+Improving Our Components 
+	Strong typing & interfaces 
+	Encapsulating styles 
+	Lifecycle hooks 
+	Custom pipes 
+	Relative Paths with Module Id
+Component Life Cycle
+	Create->Render->Create and render children->Process Changes->Destroy
+	OnInit: Perform component initialization, retrieve data 
+	OnChanges: Perform action after change to input properties 
+	OnDestroy: Perform cleanup
+Building Nested Components
+
+Checklist: Building a Custom Pipe
+	Import Pipe and PipeTransform 
+	Create a class that implements PipeTransform 
+		- export the class
+	Write code for the Transform method 
+	Decorate the class with the Pipe decorator
+Checklist: Using a Custom Pipe
+	Import the custom pipe 
+	Add the pipe to the declarations array of an Angular module 
+	Any template associated with a component that is also declared in that Angular module can use that pipe 
+	Use the Pipe in the template 
+		- Pipe character - Pipe name - Pipe arguments (separated with colons) 
+Checklist: Relative Paths with Module Id 
+	Set the moduleId property of the component decorator to module.id 
+	Change the Url to a component-relative path: - templateUrl - styleUrls
+Checklist: Nested Component
+	Input decorator 
+		- Attached to a property of any type 
+		- Prefix with @; Suffix with () 
+	Output decorator 
+		- Attached to a property declared as an EventEmitter 
+		- Use the generic argument to define the event payload type 
+		- Use the new keyword to create an instance of the EventEmitter 
+		- Prefix with @; Suffix with () 
+Checklist: Container Component
+	Use the directive
+		- Directive name -> nested component's selector 
+	Use property binding to pass data to the nested component 
+	Use event binding to respond to events from the nested component 
+		- Use $event to access the event payload passed from the nested component
+Service
+	A class with a focused purpose. 
+	Used for features that: 
+		• Are independent from any particular component 
+		• Provide shared data or logic across components 
+		• Encapsulate external interactions 
+	Depndency Injection
+		A coding pattern in which a class receives the instances of objects it needs (called dependencies) from an external source rather than creating them itself. 
+	
+	Registering a Service
+		Register a provider 
+			- Code that can create or return a service 
+			- Typically the service class itself 
+		Define in component OR Angular module metadata 
+		Registered in component: - 
+			Injectable to component AND its children 
+		Registered in Angular module: 
+			- Injectable everywhere in the application\
+Checklist: Creating a Service
+	Service class 
+		- Clear name - Use PascalCasing 
+		- Append "Service" to the name 
+		- export keyword 
+	Service decorator 
+		- Use Injectable - Prefix with @; Suffix with () 
+	Import what we need
+Checklist: Registering a Service in a Component	
+	Select the appropriate level in the hierarchy 
+		- Root component if service is used throughout the application 
+		- Specific component if only that component uses the service 
+		- Otherwise, common ancestor 
+	Component metadata 
+		- Set the providers property 
+		- Pass in an array 
+	Import what we need 
+Checklist: Dependency Injection
+	Specify the service as a dependency 
+	Use a constructor parameter 
+	Service is injected when component is instantiated
+Retrieving Data Using Http
+	Observables and Reactive Extensions
+		Help manage asynchronous data 
+		Treat events as a collection 
+			- An array whose items arrive asynchronously over time 
+			Are a proposed feature for ES 2016 
+			Use Reactive Extensions (RxJS) 
+			Are used within Angular2
+		Observable Operators
+			Methods on observables that compose new observables 
+			Transform the source observable in some way 
+			Process each value as it is emitted 
+			Examples: map, filter, take, merge,
+		Promise vs Observable
+			Promise
+				Provides a single future value 
+				Not lazy 
+				Not cancellable
+			Observable
+				Emits multiple values over time 
+				Lazy 
+				Cancellable 
+				Supports map, filter, reduce and similar operators
+		Subscribing to an Observable
+			x.then(valueFn, errorFn)                    //Promise 
+			x.subscribe(valueFn, errorFn)               //Observable 
+			x.subscribe(valueFn, errorFn, completeFn)   //Observable 
+				let sub = x.subscribe(valueFn, errorFn, completeFn)
+Http Checklist: Setup
+	Add HttpModule to the imports array of one of the application's Angular Modules
+Http Checklist: Service
+	Import what we need 
+	Define a dependency for the http client service 
+		- Use a constructor parameter 
+	Create a method for each http request 
+	Call the desired http method, such as get 
+		- Pass in the Url 
+	Map the Http response to a JSON object 
+	Add error handling 
+Http Checklist: Subscribing
+	Call the subscribe method of the returned observable 
+	Provide a function to handle an emitted item 
+		- Normally assigns a property to the returned JSON object 
+		Provide an error function to handle any returned errors
+Navigation and Routing Basics
+	How Routing Works
+		Configure a route for each component 
+		Define options/actions 
+		Tie a route to each option/action 
+		Activate the route based on user action 
+		Activating a route displays the component's view
+
+	Checklist: Displaying Components			
+		Nest-able components 
+			- Define a selector 
+			- Nest in another component 
+			- No route 
+		Routed components 
+			- No selector 
+			- Configure routes 
+			- Tie routes to actions
+	Checklist: Doing Routing
+		Configure routes 
+		Tie routes to actions 
+		Place the view
+	Routing Checklist: Configuring Routes
+		Define the base element 
+		Add RouterModule 
+			- Add each route (RouterModule.forRoot) 
+			- Order matters 
+			path: Url segment for the route 
+				- No leading slash 
+				- '' for default route 
+				- '**' for wildcard route 
+			component 
+				- Not string name; 
+				not enclosed in quotes
+	Routing Checklist: Tying Routes to Actions
+		Add the RouterLink directive as an attribute 
+			- Clickable element 
+			- Enclose in square brackets 
+		Bind to a link parameters array 
+			- First element is the path 
+			- All other elements are route parameters
+	Routing Checklist: Placing the View
+		Add the RouterOutlet directive 
+			- Identifies where to display the routed component's view 
+			- Specified in the host component's template
+
+	Passing Parameters to a Route 
+	Activating a Route with Code 
+	Protecting Routes with Guards
+		CanActivate - Guard navigation to a route 
+		CanDeactivate - Guard navigation from a route 
+		Resolve - Pre-fetch data before activating a route 
+		CanLoad - Prevent asynchronous routing 
+	Routing Checklist: Activate a Route with Code
+		Use the Router service 
+			- Import the service 
+			- Define it as a dependency 
+		Create a method that calls the navigate method of the Router service 
+			- Pass in the link parameters array 
+		Add a user interface element 
+			- Use event binding to bind to the created method
+	Routing Checklist: Protecting Routes with Guards
+		Build a guard service 
+			- Implement the guard type (CanActivate) 
+			- Create the method (canActivate()) 
+		Register the guard service provider 
+			- Must be in an Angular module 
+		Add the guard to the desired route
+What Is an Angular Module?
+	A class with an NgModule decorator 
+	Its purpose: 
+		- Organize the pieces of our application 
+		- Arrange them into blocks 
+		- Extend our application with capabilities from external libraries 
+		- Provide a template resolution environment 
+		- Aggregate and re-export
+	Bootstrap Array --bootstrap: [ AppComponent]
+		Bootstrap Array Truth #1
+			Every application must bootstrap at least one component, the root application component. 
+		Bootstrap Array Truth #2
+			The bootstrap array should only be used in the root application module, AppModule. 
+	Declarations Array
+		Declarations Array Truth #1
+			Every component, directive, and pipe we create must belong to one and only one Angular module. 
+		Declarations Array Truth #2
+			Only declare components, directives and pipes. 
+		Declarations Array Truth #3
+			Never re-declare components, directives, or pipes that belong to another module 
+		Declarations Array Truth #4
+			All declared components, directives, and pipes are private by default. 
+			They are only accessible to other components, directives, and pipes declared in the same module
+		Declarations Array Truth #5
+			The Angular module provides the template resolution environment for its component templates. 
+	Exports Array
+		Exports Array Truth #1
+			Export any component, directive, or pipe if another components need it. 
+		Exports Array Truth #2
+			Re-export modules to re-export their components, directives, and pipes. 
+		Exports Array Truth #3
+			We can re-export something without importing it first.
+		Exports Array Truth #3
+			Never export a service. 
+	Imports Array
+		Imports Array Truth #1
+			Importing a module makes available any exported components, directives, and pipes from that module. 
+		Imports Array Truth #2
+			Only import what this module needs. 
+		Imports Array Truth #3
+			Importing a module does NOT provide access to its imported modules 
+	Providers Array
+		Providers Array Truth #1
+			Any service provider added to the providers array is registered at the root of the application. 
+		Providers Array Truth #2
+			Don't add services to the providers array of a shared module. 
+			Consider building a CoreModule for services and importing it once in the AppModule. 
+		Providers Array Truth #3
+			Routing guards must be added to the providers array of an Angular module. 
+		Providers Array Truth #1
+	Angular Module Checklist: Module Structure
+		Root application module (AppModule) 
+		Feature modules Shared module (SharedModule) 
+		Core module (CoreModule) 
+		Routing modules
+	Angular Module Checklist: NgModule Metadata
+		Bootstrap: Startup component(s) 
+		Declarations: What belongs to this module 
+		Exports: What an importing module can use 
+		Imports: Supporting modules 
+		Providers: Service providers
+Angular CLI
+	A command line interface for Angular 
+		ng new APM - Creates a working Angular application with all required starter files 
+		ng g component product-list - Creates a new component 
+		And much more - Including unit and end to end tests 
+		https://cli.angular.io/ 
+Angular is 
+	A JavaScript framework For building client-side applications Using HTML, CSS and JavaScript
+	A platform supporting 
+		- Multiple languages (ES5, TypeScript) 
+		- Multiple templating syntaxes (HTML, XML) 
+		- Multiple rendering targets (DOM, native) 
+	Mobile Web 
+		- Material design 
+		- Angular Universal 
+		- Web Workers 
+	Native Mobile Apps 
