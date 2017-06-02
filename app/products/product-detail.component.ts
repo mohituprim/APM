@@ -15,10 +15,12 @@ export class ProductDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        //+ is shortcut to convert string to numeric
         let id = +this._route.snapshot.params['id'];
         this.pageTitle += `: ${id}`;
     }
 
+    //Activating a route with code
     onBack(): void {
         this._router.navigate(['/products']);
     }

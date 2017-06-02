@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {ProductService} from "./products/product.service";
 
 //Decorator to supply metadata
 //class becomes component with component decorator
@@ -21,8 +20,7 @@ import {ProductService} from "./products/product.service";
         <div class='container'>
             <router-outlet></router-outlet>
         </div>
-     </div>`,
-    providers:[ProductService]
+     </div>`
 })
 //Class
 export class AppComponent { }
