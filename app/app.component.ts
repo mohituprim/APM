@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ProductService} from "./products/product.service";
 
 //Decorator to supply metadata
 //class becomes component with component decorator
@@ -9,7 +10,8 @@ import { Component } from '@angular/core';
     template:`
     <div>
         <pm-products></pm-products>
-    </div>`
+    </div>`,
+    providers:[ProductService]
 })
 //Class
 export class AppComponent { }
