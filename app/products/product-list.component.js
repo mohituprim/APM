@@ -35,7 +35,7 @@ var ProductListComponent = (function () {
 }());
 ProductListComponent = __decorate([
     core_1.Component({
-        selector: 'pm-products',
+        //selector: 'pm-products',
         //Can be used in place of relative path
         moduleId: module.id,
         //path is relatvie to index.html file

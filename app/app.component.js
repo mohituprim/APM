@@ -21,7 +21,7 @@ AppComponent = __decorate([
         //Directive name used int HTML
         selector: 'pm-app',
         //View Layout
-        template: "\n    <div>\n        <pm-products></pm-products>\n    </div>",
+        template: "\n    <div>\n        <nav class='navbar navbar-default'>\n            <div class='container-fluid'>\n                <a class='navbar-brand'>{{pageTitle}}</a>\n                <ul class='nav navbar-nav'>\n                    <li><a [routerLink]=\"['/welcome']\">Home</a></li>\n                    <li><a [routerLink]=\"['/products']\">Product List</a></li>\n                </ul>\n            </div>\n        </nav>\n        <div class='container'>\n            <router-outlet></router-outlet>\n        </div>\n     </div>",
         providers: [product_service_1.ProductService]
     })
     //Class
