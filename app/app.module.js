@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
-var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
+var app_routing_module_1 = require("./app-routing.module");
 var welcome_component_1 = require("./home/welcome.component");
 var product_module_1 = require("./products/product.module");
 var AppModule = (function () {
@@ -21,13 +21,10 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         //External module
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule,
-            router_1.RouterModule.forRoot([
-                { path: 'welcome', component: welcome_component_1.WelcomeComponent },
-                { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-            ]),
-            product_module_1.ProductModule
+        imports: [platform_browser_1.BrowserModule,
+            http_1.HttpModule,
+            product_module_1.ProductModule,
+            app_routing_module_1.AppRoutingModule
         ],
         //Internal Module
         declarations: [app_component_1.AppComponent, welcome_component_1.WelcomeComponent],
